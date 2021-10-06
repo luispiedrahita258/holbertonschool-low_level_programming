@@ -21,7 +21,6 @@ else
 {
 printf("%d, ", n);
 }
-	
 }
 }
 else
