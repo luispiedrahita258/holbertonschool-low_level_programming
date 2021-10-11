@@ -3,42 +3,31 @@
 
 
 
-/**
- * main - Generates random valid passwords for the
- *        program 101-crackme.
- *
- * Return: Always 0.
- **/
 int main(void)
 {
-	int i, j, k, s;
-	char c[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	char p[58];
+	int ascii = 2772, i = 0, j, random;
+	char password[100];
+	time_t t;
 
-	srand(time(NULL));
-	while (s != 2772)
+	srand((int) time(&t));
+	while (ascii > 126)
 	{
-		i = k = s = 0;
-		while ((2772 - 122) > s)
-		{
-			j = rand() % 62;
-			p[i] = c[j];
-			s += c[j];
-			i++;
-		}
-		while (c[k])
-		{
-			if (c[k] == (2772 - s))
-			{
-				p[i] = c[k];
-				s += c[k];
-				i++;
-				break;
-			}
-			k++;
-		}
+		random = rand() % 126;
+		password[i] = random;
+		ascii -= random;
+		i++;
 	}
-	p[i] = '\0';
-	printf("%s", p);
+	if (ascii > 0)
+		password[i] = ascii;
+	else
+	{
+		i--;
+	}
+	
+
+	for (j = 0; j <= i; j++)
+	{
+		printf("%c", password[j]);
+	}
 	return (0);
 }
