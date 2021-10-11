@@ -2,17 +2,19 @@
 #include <stdio.h>
 
 /**
- ** _strlen - Returns the length of a string.
- ** @str: The string to get the length of.
+ ** _strlen - Returns the length of a string
+ ** @s: String to count
  **
- ** Return: The length of @str.
+ ** Return: String length
  **/
-size_t _strlen(const char *str)
+int _strlen(char *s)
 {
-size_t length = 0;
+int c = 0;
 
-while (*str++)
-length++;
+for (; *s != '\0'; s++)
+{
+c++;
+}
 
-return (length);
+return (c);
 }
