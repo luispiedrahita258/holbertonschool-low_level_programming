@@ -10,46 +10,44 @@
 
 void print_buffer(char *b, int size)
 {
-int i, pi, c;
+int byte, index;
+
+for (byte = 0; byte < size; byte += 10)
+{
+printf("%08x: ", byte);
+
+for (index = 0; index < 10; index++)
+{
+if ((index + byte) >= size)
+printf("  ");
+
+else
+printf("%02x", *(b + index + byte));
+
+if ((index % 2) != 0 && index != 0)
+printf(" ");
+}
+
+for (index = 0; index < 10; index++)
+{
+if ((index + byte) >= size)
+break;
+
+else if (*(b + index + byte) >= 31 &&
+*(b + index + byte) <= 126)
+printf("%c", *(b + index + byte));
+
+else
+printf(".");
+}
+
+if (byte >= size)
+continue;
+
+printf("\n");
+}
 
 if (size <= 0)
-printf("\n");
-else
-{
-for (i = 9, pi = 0; i < size; i += 10)
-{	printf("%.8x: ", pi);
-for (c = pi; c <= i ; c++)
-{	printf("%.2x", b[c]);
-if (c % 2 == 1)
-printf(" ");	}
-for (c = pi; c <= i ; c++)
-{
-if (b[c] < 32)
-printf(".");
-else
-printf("%c", b[c]);	}
-printf("\n");
-pi = i + 1;	}
-if (pi < size - 1)
-{	i -= 9;
-printf("%.8x: ", i);
-for (c = i; c < i + 10; c++)
-{
-if (c < size)
-printf("%.2x", b[c]);
-else
-printf("  ");
-if (c % 2 == 1)
-printf(" ");	}
-for (; i < size ; i++)
-{
-if (b[i] < 32)
-printf(".");
-else
-printf("%c", b[i]);
-}
-printf("\n");
-}
-}
+		printf("\n");
 }
 
